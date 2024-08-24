@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Product } from 'src/app/models/product.model';
 
 @Component({
@@ -8,48 +9,39 @@ import { Product } from 'src/app/models/product.model';
 })
 export class HomePage implements OnInit {
 
-  products: Product[] = [
+  recentProducts: Product[] = [
     {
       id: '1',
-      title: 'Product 1',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      imageUrl: 'https://fjallraven.cl/cdn/shop/files/kanken_23510-424_a_main_fjr_5000x.jpg?v=1713990589',
-      status: 'Reportado',
-      location: 'Location 1',
-      dateReported: new Date()
+      title: 'iPhone 14',
+      description: 'Teléfono encontrado en el primer piso cerca de la entrada principal',
+      imageUrl: 'https://d1aqw5mz0wngqe.cloudfront.net/images/spree/images/2123123/attachments/large/Apple_iPhone_14_Midnight_1A.jpg?1678205819',
+      status: 'Encontrado',
+      location: 'Piso 1',
+      dateReported: new Date(),
     },
     {
       id: '2',
-      title: 'Product 2',
-      description: 'Nullam varius, lectus vel consectetur tincidunt, nisi ligula sodales est.',
-      imageUrl: 'https://via.placeholder.com/150',
-      status: 'Encontrado',
-      location: 'Location 2',
-      dateReported: new Date()
-    },
-    {
-      id: '3',
-      title: 'Product 3',
-      description: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-      imageUrl: 'https://via.placeholder.com/150',
-      status: 'Validado',
-      location: 'Location 3',
-      dateReported: new Date()
+      title: 'Mochila Negra',
+      description: 'Mochila negra perdida en el laboratorio de computación',
+      imageUrl: 'https://saxoline.cl/cdn/shop/files/be80f11798a3621a23baa2c2ef8ad8cba04f77fdad9add5abcf048dce2a187ac_2000x.jpg?v=1687469550',
+      status: 'Reportado',
+      location: 'LPC10+1',
+      dateReported: new Date(),
     }
   ];
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
+    console.log('Esta linea de codigo parte al iniciar la pantalla')
   }
 
-  viewDetails(productId?: string) {
-    if (productId) {
-      console.log('Ver detalles del producto con ID:', productId);
-      // Aquí podrías navegar a la página de detalles o realizar alguna acción.
-    } else {
-      console.error('El producto no tiene un ID válido');
-    }
+  navigateToReport() {
+    this.navCtrl.navigateForward('/report');
+  }
+
+  navigateToFind() {
+    this.navCtrl.navigateForward('/find');
   }
 
 }

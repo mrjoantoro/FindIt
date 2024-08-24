@@ -1,0 +1,33 @@
+.hero {
+  text-align: center;
+  margin-top: 20px;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: var(--ion-color-medium)
+  }
+}
+
+.actions {
+  margin: 20px;
+  ion-button {
+    margin-bottom: 15px;
+  }
+}
+
+ion-grid {
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    margin-top: 50px;
+  }
+}
+
+
