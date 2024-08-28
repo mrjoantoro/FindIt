@@ -1,13 +1,26 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>find</ion-title>
+    <ion-title>Buscar Producto Encontrado</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">find</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    (ionInput)="filterProducts()"
+    placeholder="Buscar por título, descripción o ubicación">
+  </ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let product of filteredProducts" (click)="viewProduct(product.id)">
+      <ion-thumbnail slot="start">
+        <img [src]="product.imageUrl" alt="{{ product.title }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ product.title }}</h2>
+        <p>{{ product.location }}</p>
+        <ion-note color="primary">{{ product.status }}</ion-note>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

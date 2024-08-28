@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { FindPageRoutingModule } from './find-routing.module';
 
 import { FindPage } from './find.page';
+import { SharedModule } from 'src/app/components/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FindPageRoutingModule
+    FindPageRoutingModule,
+    SharedModule
   ],
   declarations: [FindPage]
 })
