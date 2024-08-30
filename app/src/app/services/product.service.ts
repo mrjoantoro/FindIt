@@ -25,6 +25,24 @@ export class ProductService {
       status: 'Encontrado',
       location: 'LPC10+1',
       dateReported: new Date(),
+    },
+    {
+      id: '3',
+      title: 'iPhone 13',
+      description: 'iPhone 13 encontrado en el segundo piso cerca de la entrada principal',
+      imageUrl: 'https://d1aqw5mz0wngqe.cloudfront.net/images/spree/images/2123123/attachments/large/Apple_iPhone_13_Midnight_1A.jpg?1678205819',
+      status: 'Encontrado',
+      location: 'Piso 2',
+      dateReported: new Date(),
+    },
+    {
+      id: '4',
+      title: 'Reloj',
+      description: 'Reloj perdido en el segundo piso cerca de la entrada principal',
+      imageUrl: 'https://cdn.shopify.com/s/files/1/0682/5333/products/19099_1024x1024.jpg?v=1679396987',
+      status: 'Encontrado',
+      location: 'Piso 2',
+      dateReported: new Date(),
     }
   ];
 
