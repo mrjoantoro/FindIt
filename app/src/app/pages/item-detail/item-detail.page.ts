@@ -24,6 +24,8 @@ export class ItemDetailPage implements OnInit {
       this.productService.getProductById(id).subscribe(product => {
         this.product = product;
       });
+    } else {
+      alert('No se encontro el ID del producto');
     }
   }
 
