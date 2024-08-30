@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
 
@@ -12,7 +13,7 @@ export class FindPage implements OnInit {
   filteredProducts: Product[] = [];
   searchTerm: string = '';
 
-  constructor(private productSrv: ProductService) { }
+  constructor(private productSrv: ProductService, private navCtrl: NavController) { }
 
   ngOnInit() {
     this.loadproducts();
@@ -34,8 +35,8 @@ export class FindPage implements OnInit {
     );
   }
 
-  viewProduct(id?: string) {
-    console.log(id);
+  viewProduct(productId: string) {
+    this.navCtrl.navigateForward(`/item/${productId}`);
   }
 
 

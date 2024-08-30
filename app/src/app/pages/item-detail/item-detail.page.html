@@ -1,13 +1,31 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>item-detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ product?.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">item-detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content *ngIf="product">
+  <ion-card>
+    <img [src]="product.imageUrl" alt="{{ product.title }}">
+    <ion-card-header>
+      <ion-card-title>{{ product.title }}</ion-card-title>
+      <ion-note color="primary">{{ product.status }}</ion-note>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ product.description }}</p>
+      <ion-text color="medium">
+        <small>Ubicación: {{ product.location }}</small><br>
+        <small>Reportado el: {{ product.dateReported | date:'mediumDate' }}</small>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="full" color="success" (click)="claimProduct()" *ngIf="product.status === 'Encontrado'">
+    Reclamar Producto
+  </ion-button>
 </ion-content>

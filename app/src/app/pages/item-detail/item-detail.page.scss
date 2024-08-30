@@ -1,0 +1,28 @@
+ion-card {
+  margin: 20px;
+  ion-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  img {
+    max-height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  ion-card-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  ion-note {
+    font-weight: bold;
+  }
+}
+
+ion-button {
+  margin: 20px;
+}

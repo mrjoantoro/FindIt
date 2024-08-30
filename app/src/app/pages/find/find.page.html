@@ -1,8 +1,12 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button> <!-- Botón de volver -->
+    </ion-buttons>
     <ion-title>Buscar Producto Encontrado</ion-title>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content>
   <ion-searchbar
@@ -12,7 +16,7 @@
   </ion-searchbar>
 
   <ion-list>
-    <ion-item *ngFor="let product of filteredProducts" (click)="viewProduct(product.id)">
+    <ion-item *ngFor="let product of filteredProducts" (click)="viewProduct(product.id!)">
       <ion-thumbnail slot="start">
         <img [src]="product.imageUrl" alt="{{ product.title }}">
       </ion-thumbnail>
