@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { ProductService } from 'src/app/services/product.service';
-import { Product } from 'src/app/models/product.model';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-find',
@@ -11,33 +10,31 @@ import { Product } from 'src/app/models/product.model';
 export class FindPage implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  searchTerm: string = '';
 
-  constructor(private productSrv: ProductService, private navCtrl: NavController) { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.loadproducts();
+    this.loadProducts();
   }
 
-  loadproducts(){
-    this.productSrv.getProducts().subscribe((products) => {
+  loadProducts() {
+    this.productService.getProducts().subscribe(products => {
       this.products = products.filter(product => product.status === 'Encontrado');
-      this.filteredProducts = [...this.products];
+      this.filteredProducts = this.products;
     });
   }
 
-  filterProducts(){
-    const term = this.searchTerm.toLowerCase();
+  // Filtrar productos según el término de búsqueda
+  filterProducts(searchTerm: string) {
+    const term = searchTerm.toLowerCase();
     this.filteredProducts = this.products.filter(product =>
       product.title.toLowerCase().includes(term) ||
       product.description.toLowerCase().includes(term) ||
-      product.location?.toLowerCase().includes(term)
+      (product.location?.toLowerCase().includes(term) ?? false)
     );
   }
 
   viewProduct(productId: string) {
-    this.navCtrl.navigateForward(`/item/${productId}`);
+    // Navega a la página de detalles del producto
   }
-
-
 }

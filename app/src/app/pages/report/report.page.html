@@ -1,14 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button> <!-- Botón de volver -->
-    </ion-buttons>
     <ion-title>Reportar Producto Perdido</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/profile">
-        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -29,10 +21,8 @@
       <ion-input formControlName="location" type="text"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">URL de Imagen (opcional)</ion-label>
-      <ion-input formControlName="imageUrl" type="url"></ion-input>
-    </ion-item>
+    <!-- Componente de ImageUploader -->
+    <app-image-uploader (imageSelected)="onImageSelected($event)"></app-image-uploader>
 
     <ion-button expand="full" color="primary" type="submit" [disabled]="reportForm.invalid">
       Enviar Reporte

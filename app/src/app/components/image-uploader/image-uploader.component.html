@@ -1,3 +1,4 @@
-<p>
-  image-uploader works!
-</p>
+<ion-button expand="full" color="primary" (click)="fileInput.click()">
+  Seleccionar Imagen
+</ion-button>
+<input type="file" (change)="onFileChange($event)" #fileInput hidden accept="image/*" />

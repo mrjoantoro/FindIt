@@ -1,24 +1,15 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button> <!-- Botón de volver -->
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
     <ion-title>Buscar Producto Encontrado</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/profile">
-        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-  <ion-searchbar
-    [(ngModel)]="searchTerm"
-    (ionInput)="filterProducts()"
-    placeholder="Buscar por título, descripción o ubicación">
-  </ion-searchbar>
+  <!-- Implementación de SearchBar -->
+  <app-search-bar (searchChanged)="filterProducts($event)"></app-search-bar>
 
   <ion-list>
     <ion-item *ngFor="let product of filteredProducts" (click)="viewProduct(product.id!)">
