@@ -2,12 +2,12 @@
   <ion-toolbar>
     <!-- Botón de Volver -->
     <ion-buttons slot="start" *ngIf="showBackButton">
-      <ion-back-button [defaultHref]="backButtonUrl"></ion-back-button>
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
-
     <!-- Título dinámico -->
     <ion-title>{{ title }}</ion-title>
-
     <!-- Botón de Perfil -->
     <ion-buttons slot="end" *ngIf="showProfileButton">
       <ion-button [routerLink]="profileButtonUrl">
