@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- Botón de Volver -->
+    <ion-buttons slot="start" *ngIf="showBackButton">
+      <ion-back-button [defaultHref]="backButtonUrl"></ion-back-button>
+    </ion-buttons>
+
+    <!-- Título dinámico -->
+    <ion-title>{{ title }}</ion-title>
+
+    <!-- Botón de Perfil -->
+    <ion-buttons slot="end" *ngIf="showProfileButton">
+      <ion-button [routerLink]="profileButtonUrl">
+        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

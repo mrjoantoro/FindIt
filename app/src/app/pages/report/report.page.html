@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Reportar Producto Perdido</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header-custom [title]="'Report'" [showBackButton]="true" [backButtonUrl]="'/home'" [showProfileButton]="true"></app-header-custom>
 
 <ion-content>
   <form [formGroup]="reportForm" (ngSubmit)="submitReport()">

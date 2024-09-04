@@ -1,12 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Buscar Producto Encontrado</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header-custom [title]="'Find'" [showBackButton]="true" [backButtonUrl]="'/home'" [showProfileButton]="true"></app-header-custom>
 <ion-content>
   <!-- Implementación de SearchBar -->
   <app-search-bar (searchChanged)="filterProducts($event)"></app-search-bar>

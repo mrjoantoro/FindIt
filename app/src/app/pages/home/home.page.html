@@ -1,15 +1,4 @@
-
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Inicio</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/profile">
-        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
+<app-header-custom [title]="'Home'" [showBackButton]="false" [backButtonUrl]="'/home'" [showProfileButton]="true"></app-header-custom>
 <ion-content>
   <div class="hero">
     <h1>Bienvenido a Lost & Found</h1>
