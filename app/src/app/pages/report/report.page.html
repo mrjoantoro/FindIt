@@ -19,6 +19,7 @@
 
     <!-- Componente de ImageUploader -->
     <app-image-uploader (imageSelected)="onImageSelected($event)"></app-image-uploader>
+    <ion-button (click)="takePhoto()" expand="block">Sacar Fotografia</ion-button>
 
     <ion-button expand="full" color="primary" type="submit" [disabled]="reportForm.invalid">
       Enviar Reporte

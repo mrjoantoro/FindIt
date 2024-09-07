@@ -3,14 +3,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { ProductService } from '../../services/product.service';
 
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+defineCustomElements(window);
+
 @Component({
   selector: 'app-report',
   templateUrl: './report.page.html',
   styleUrls: ['./report.page.scss'],
 })
 export class ReportPage implements OnInit {
-  reportForm!: FormGroup;  // Usamos el operador de aserción no nula para inicializar luego
-  selectedImage: File | null = null;  // Para manejar la imagen seleccionada
+  reportForm!: FormGroup; // Usamos el operador de aserción no nula para inicializar luego
+  selectedImage: File | null = null; // Para manejar la imagen seleccionada
 
   constructor(
     private fb: FormBuilder,
@@ -24,8 +28,8 @@ export class ReportPage implements OnInit {
       title: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(10)]],
       location: ['', Validators.required],
-      imageUrl: [''],  // Inicialmente vacío, lo llenaremos si se selecciona una imagen
-      status: ['Reportado', Validators.required],  // Estado inicial por defecto
+      imageUrl: [''], // Inicialmente vacío, lo llenaremos si se selecciona una imagen
+      status: ['Reportado', Validators.required], // Estado inicial por defecto
     });
   }
 
@@ -36,18 +40,30 @@ export class ReportPage implements OnInit {
 
       if (this.selectedImage) {
         // Si hay una imagen seleccionada, agrega la URL simulada de la imagen
-        productData.imageUrl = this.selectedImage.name;  // Simulamos que subimos la imagen
+        productData.imageUrl = this.selectedImage.name; // Simulamos que subimos la imagen
       }
 
       // Llamamos al servicio para agregar el producto
       this.productService.addProduct(productData).then(() => {
-        this.navCtrl.back();  // Navegar hacia atrás después del envío
+        this.navCtrl.back(); // Navegar hacia atrás después del envío
       });
     }
   }
 
   // Método para manejar la selección de la imagen
   onImageSelected(image: File) {
-    this.selectedImage = image;  // Almacenamos la imagen seleccionada
+    this.selectedImage = image; // Almacenamos la imagen seleccionada
+  }
+
+  // Método para tomar foto
+  async takePhoto() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      source: CameraSource.Camera,
+      resultType: CameraResultType.Uri,
+    });
+
+    var imageUrl = image.webPath;
+    console.log(imageUrl);
   }
 }

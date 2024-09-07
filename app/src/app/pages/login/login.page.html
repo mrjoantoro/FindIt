@@ -1,0 +1,20 @@
+<app-header-custom [title]="'Login'" [showBackButton]="false" [showProfileButton]="false"></app-header-custom>
+
+
+<ion-content>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" color="primary" type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</ion-button>
+
+    <ion-button expand="full" color="secondary" (click)="goToRegister()">Crear Cuenta</ion-button>
+  </form>
+</ion-content>

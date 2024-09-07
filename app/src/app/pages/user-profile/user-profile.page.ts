@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import { User } from 'src/app/models/user.mode';
+import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -35,15 +35,11 @@ export class UserProfilePage implements OnInit {
 
   updateProfile() {
     if (this.profileForm.valid) {
-      this.authService.updateUserProfile(this.profileForm.value).then(() => {
-        this.navCtrl.back(); // Navega hacia atrás después de actualizar
-      });
+      this.authService.updateUser(this.profileForm.value as User);
     }
   }
 
   logout() {
-    this.authService.logout().then(() => {
-      this.navCtrl.navigateRoot('/login'); // Redirige al login después de cerrar sesión
-    });
+    this.authService.logout();
   }
 }
