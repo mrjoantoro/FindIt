@@ -31,5 +31,4 @@ export class HomePage implements OnInit {
   navigateToFind() {
     this.navCtrl.navigateForward('/find');
   }
-
 }

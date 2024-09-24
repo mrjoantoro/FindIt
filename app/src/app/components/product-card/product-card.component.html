@@ -11,6 +11,6 @@
     <ion-text color="medium">
       <small>{{ product?.location }} - {{ product?.dateReported | date:'shortDate' }}</small>
     </ion-text>
-    <ion-button expand="full" color="primary">Ver Detalles</ion-button>
+    <ion-button expand="full" color="primary" (click)="viewProductDetails($event)">Ver Detalles</ion-button>
   </ion-card-content>
 </ion-card>

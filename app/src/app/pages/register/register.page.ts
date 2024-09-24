@@ -20,10 +20,10 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],}, { validator: this.passwordsMatch });
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
   passwordsMatch(formGroup: FormGroup) {
@@ -40,5 +40,9 @@ export class RegisterPage implements OnInit {
     } else {
       alert('El usuario ya está registrado');
     }
+  }
+
+  goToLogin() {
+    this.navCtrl.navigateBack('/login');
   }
 }

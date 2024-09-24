@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-find',
@@ -11,7 +12,7 @@ export class FindPage implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private navCtrl: NavController) {}
 
   ngOnInit() {
     this.loadProducts();
@@ -35,6 +36,6 @@ export class FindPage implements OnInit {
   }
 
   viewProduct(productId: string) {
-    // Navega a la página de detalles del producto
+    this.navCtrl.navigateForward(`/item/${productId}`);
   }
 }

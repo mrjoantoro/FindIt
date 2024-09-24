@@ -1,28 +1,31 @@
-<app-header-custom [title]="'Registrate'" [showBackButton]="false" [showProfileButton]="true"></app-header-custom>
+<app-header-custom [title]="'Registrate'" [showBackButton]="true" [showProfileButton]="false"></app-header-custom>
 
+<ion-content class="ion-padding custom-content">
+  <div class="form-container">
+    <h2>Crear cuenta</h2>
+    <p>¡Regístrate para comenzar!</p>
 
-<ion-content>
-  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input formControlName="nombre" type="text"></ion-input>
-    </ion-item>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <ion-item lines="none">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="name" placeholder="John Doe"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input formControlName="email" type="email"></ion-input>
-    </ion-item>
+      <ion-item lines="none">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="email" placeholder="john@doe.com"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input formControlName="password" type="password"></ion-input>
-    </ion-item>
+      <ion-item lines="none">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Confirmar Contraseña</ion-label>
-      <ion-input formControlName="confirmPassword" type="password"></ion-input>
-    </ion-item>
+      <div class="login-link">
+        <p>Ya soy miembro <a (click)="goToLogin()">¿Quieres iniciar sesión?</a></p>
+      </div>
 
-    <ion-button expand="full" color="primary" type="submit" [disabled]="registerForm.invalid"]>Registrar</ion-button>
-  </form>
+      <ion-button expand="block" type="submit" color="primary" [disabled]="registerForm.invalid">Registrarse</ion-button>
+    </form>
+  </div>
 </ion-content>
