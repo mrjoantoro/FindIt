@@ -1,0 +1,10 @@
+<app-header-custom [title]="'Not Found'" [showBackButton]="true" [showProfileButton]="false"></app-header-custom>
+
+<ion-content class="ion-padding">
+  <div class="not-found-container">
+    <ion-icon name="alert-circle-outline" size="large"></ion-icon>
+    <h2>Error 404</h2>
+    <p>La página que buscas no existe.</p>
+    <ion-button expand="full" color="primary" (click)="goHome()">Ir al Inicio</ion-button>
+  </div>
+</ion-content>

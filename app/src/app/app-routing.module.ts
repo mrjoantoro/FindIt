@@ -28,6 +28,12 @@ const routes: Routes = [
   {
     path: 'register', loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'not-found', loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
+  },
+  {
+    path: '**', redirectTo: 'not-found'
+  }
 ];
 
 @NgModule({
