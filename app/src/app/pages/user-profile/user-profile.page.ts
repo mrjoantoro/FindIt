@@ -21,7 +21,6 @@ export class UserProfilePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.currentUser = this.authService.getCurrentUser();
     this.initializeForm();
   }
 
@@ -35,7 +34,7 @@ export class UserProfilePage implements OnInit {
 
   updateProfile() {
     if (this.profileForm.valid) {
-      this.authService.updateUser(this.profileForm.value as User);
+
     }
   }
 

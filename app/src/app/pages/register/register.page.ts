@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
+import { NavController } from '@ionic/angular';
 import { User } from '../../models/user.model';
 
 @Component({
@@ -20,29 +20,25 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      fullName: ['', Validators.required],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  passwordsMatch(formGroup: FormGroup) {
-    const { password, confirmPassword } = formGroup.value;
-    return password === confirmPassword ? null : { mismatch: true };
-  }
 
-  onRegister() {
+
+  async onRegister() {
     const user = this.registerForm.value as User;
-    if (this.authService.register(user)) {
-      // Navegar al login después de crear el usuario
-      alert('Usuario creado con éxito');
-      this.navCtrl.navigateBack('/login');
-    } else {
-      alert('El usuario ya está registrado');
+    try {
+      const result = await this.authService.register(user);
+      console.log('Registro exitoso', result);
+    } catch (error) {
+      console.log('Error al registrar', error);
     }
   }
 
   goToLogin() {
-    this.navCtrl.navigateBack('/login');
+    this.navCtrl.navigateForward('/login');
   }
 }

@@ -24,12 +24,13 @@ export class LoginPage {
 
   onLogin() {
     const { email, password } = this.loginForm.value;
-    if (this.authSrv.login(email, password)) {
-      // Navegar a la página principal
-      this.navCtrl.navigateRoot('/home');
-    } else {
-      alert('Email o contraseña incorrectos');
-    }
+    this.authSrv.login(email, password)
+      .then(() => {
+        this.navCtrl.navigateForward('/home');
+      })
+      .catch((error) => {
+        console.log('Error al iniciar sesión', error);
+      });
   }
 
   goToRegister() {
