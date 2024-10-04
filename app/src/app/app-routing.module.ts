@@ -5,7 +5,7 @@ import { authGuard } from './guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'openai',
     pathMatch: 'full'
   },
   {
@@ -37,8 +37,12 @@ const routes: Routes = [
     path: 'not-found', loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
   {
+    path: 'openai',
+    loadChildren: () => import('./pages/openai/openai.module').then( m => m.OpenaiPageModule)
+  },
+  {
     path: '**', redirectTo: 'not-found'
-  }
+  },
 ];
 
 @NgModule({

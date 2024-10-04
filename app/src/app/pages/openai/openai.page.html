@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recetas con OpenAI</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Ingredientes</ion-label>
+    <ion-input [(ngModel)]="ingredients"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="getRecipes()">Obtener Recetas</ion-button>
+
+  <div *ngIf="recipes">
+    <h2>Opciones de Recetas:</h2>
+    <p>{{ recipes }}</p>
+  </div>
+</ion-content>
