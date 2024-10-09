@@ -20,7 +20,7 @@ export class FindPage implements OnInit {
 
   loadProducts() {
     this.productService.getProducts().subscribe(products => {
-      this.products = products.filter(product => product.status === 'Encontrado');
+      this.products = products.filter(product => product.status !== 'Encontrado');
       this.filteredProducts = this.products;
     });
   }

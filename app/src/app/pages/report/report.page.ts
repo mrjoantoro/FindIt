@@ -35,18 +35,16 @@ export class ReportPage implements OnInit {
 
   // Método para manejar el envío del formulario
   submitReport() {
-    if (this.reportForm.valid) {
-      const productData = this.reportForm.value;
-
-      if (this.selectedImage) {
-        // Si hay una imagen seleccionada, agrega la URL simulada de la imagen
-        productData.imageUrl = this.selectedImage.name; // Simulamos que subimos la imagen
-      }
-
-      // Llamamos al servicio para agregar el producto
-      this.productService.addProduct(productData).then(() => {
-        this.navCtrl.back(); // Navegar hacia atrás después del envío
-      });
+    if(this.reportForm.valid) {
+      const productData = this.reportForm.value; // Obtenemos los datos del formulario
+      this.productService.createLostProduct(productData)
+        .then(() => {
+          console.log('Reporte creado satisfactoriamente');
+          this.navCtrl.navigateForward('/home');
+        })
+        .catch((error) => {
+          console.log('Error al crear el reporte', error);
+        });
     }
   }
 

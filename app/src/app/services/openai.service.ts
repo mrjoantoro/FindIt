@@ -9,7 +9,7 @@ export class OpenaiService {
 
   constructor() {
     this.openai = new OpenAI({
-      apiKey: 'PON_TU_APIKEY', // Reemplaza con tu clave API
+      apiKey: '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', // Reemplaza con tu clave API
       dangerouslyAllowBrowser: true, // Habilita el uso en navegador
     });
   }
