@@ -9,7 +9,6 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ImageUploaderComponent } from '../image-uploader/image-uploader.component';
 import { HeaderCustomComponent } from '../header-custom/header-custom.component';
 
-
 @NgModule({
   declarations: [
     ProductCardComponent,
@@ -19,9 +18,9 @@ import { HeaderCustomComponent } from '../header-custom/header-custom.component'
   ],
   imports: [
     CommonModule,
-    IonicModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    IonicModule,
     RouterModule
   ],
   exports: [
@@ -31,4 +30,4 @@ import { HeaderCustomComponent } from '../header-custom/header-custom.component'
     HeaderCustomComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { ProductService } from '../../services/product.service';
 
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 defineCustomElements(window);
+
 
 @Component({
   selector: 'app-report',
@@ -13,8 +13,8 @@ defineCustomElements(window);
   styleUrls: ['./report.page.scss'],
 })
 export class ReportPage implements OnInit {
-  reportForm!: FormGroup; // Usamos el operador de aserción no nula para inicializar luego
-  selectedImage: File | null = null; // Para manejar la imagen seleccionada
+  reportForm!: FormGroup;
+  selectedImage: string | null = null; // Almacena la imagen seleccionada
 
   constructor(
     private fb: FormBuilder,
@@ -23,20 +23,25 @@ export class ReportPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Inicializamos el formulario en ngOnInit
     this.reportForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(10)]],
       location: ['', Validators.required],
-      imageUrl: [''], // Inicialmente vacío, lo llenaremos si se selecciona una imagen
-      status: ['Reportado', Validators.required], // Estado inicial por defecto
+      imageUrl: [''], // El campo para la imagen
+      status: ['Reportado', Validators.required],
     });
+  }
+
+  // Método que maneja la imagen seleccionada emitida desde el componente ImageUploader
+  onImageSelected(imageBase64: string) {
+    this.selectedImage = imageBase64; // Guardamos la imagen seleccionada en base64
+    this.reportForm.patchValue({ imageUrl: this.selectedImage }); // Actualizamos el campo imageUrl en el formulario
   }
 
   // Método para manejar el envío del formulario
   submitReport() {
-    if(this.reportForm.valid) {
-      const productData = this.reportForm.value; // Obtenemos los datos del formulario
+    if (this.reportForm.valid) {
+      const productData = this.reportForm.value;
       this.productService.createLostProduct(productData)
         .then(() => {
           console.log('Reporte creado satisfactoriamente');
@@ -46,22 +51,5 @@ export class ReportPage implements OnInit {
           console.log('Error al crear el reporte', error);
         });
     }
-  }
-
-  // Método para manejar la selección de la imagen
-  onImageSelected(image: File) {
-    this.selectedImage = image; // Almacenamos la imagen seleccionada
-  }
-
-  // Método para tomar foto
-  async takePhoto() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      source: CameraSource.Camera,
-      resultType: CameraResultType.Uri,
-    });
-
-    var imageUrl = image.webPath;
-    console.log(imageUrl);
   }
 }
