@@ -6,10 +6,11 @@ import { OpenAI } from 'openai';
 })
 export class OpenaiService {
   private openai: OpenAI;
+  private apiKey : string = '';
 
   constructor() {
     this.openai = new OpenAI({
-      apiKey: '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', // Reemplaza con tu clave API
+      apiKey: this.apiKey, // Reemplaza con tu clave API
       dangerouslyAllowBrowser: true, // Habilita el uso en navegador
     });
   }
@@ -18,13 +19,21 @@ export class OpenaiService {
       const prompt = `Crea recetas usando estos ingredientes: ${ingredients}`;
 
       try {
-        const response = await this.openai.chat.completions.create({
-          model: 'gpt-4o-mini',
-          messages: [{ role: 'user', content: prompt }],
+        const completion = await this.openai.chat.completions.create({
+            model: "gpt-4o",
+            messages: [
+                { role: "system", content: "Eres un experto chef profesional." },
+                {
+                    role: "user",
+                    content: prompt,
+                },
+            ],
         });
 
-        console.log(response);
-        const content = response.choices[0].message.content;
+        console.log(completion.choices[0].message);
+        //const content = response.choices[0].message.content;
+        let content = completion.choices[0].message.content;
+
         if (content) {
           return content; // Retorna las opciones de recetas
         } else {

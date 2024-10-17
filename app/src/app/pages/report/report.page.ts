@@ -34,6 +34,7 @@ export class ReportPage implements OnInit {
 
   // Método que maneja la imagen seleccionada emitida desde el componente ImageUploader
   onImageSelected(imageBase64: string) {
+    console.log(imageBase64);
     this.selectedImage = imageBase64; // Guardamos la imagen seleccionada en base64
     this.reportForm.patchValue({ imageUrl: this.selectedImage }); // Actualizamos el campo imageUrl en el formulario
   }

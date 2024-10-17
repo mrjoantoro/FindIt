@@ -33,7 +33,7 @@
     "cordova-plugin-camera": "^7.0.0",
     "firebase": "^10.13.2",
     "ionicons": "^7.0.0",
-    "openai": "^4.67.1",
+    "openai": "^4.67.3",
     "rollup": "^4.22.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
