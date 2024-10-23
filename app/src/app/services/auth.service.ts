@@ -30,6 +30,7 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
     .then((result) => {
       console.log('Sesion iniciada satisfactoriamente', result);
+      this.setLocalStorageItem('user', email);
       this.router.navigate(['/home']);
     })
     .catch((error) => {
@@ -71,4 +72,18 @@ export class AuthService {
   getCurrentUser(): Promise<any> {
     return this.afAuth.currentUser;
   }
+
+  getLocalStorageItem = <T>(key: string): T | null => {
+    const item = window.localStorage.getItem(key);
+    return item ? JSON.parse(item) as T : null;
+  }
+
+  setLocalStorageItem = <T>(key: string, value: T): void => {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  destoyLocalStorageItem = <T>(key: string) : void => {
+    window.localStorage.removeItem(key);
+  }
+  
 }

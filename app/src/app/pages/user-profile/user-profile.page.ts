@@ -39,6 +39,8 @@ export class UserProfilePage implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
+    //this.authService.logout();
+    this.authService.destoyLocalStorageItem('user');
+    this.navCtrl.navigateForward('/login');
   }
 }
